@@ -1,7 +1,7 @@
 public class pilha{
     private Object array[];
     private int top = -1;
-    public void pilha(){
+    public void arrayStack(){
         array = (Object[]) new Object[1];
     }
     public int size(){
@@ -13,7 +13,7 @@ public class pilha{
     }
     public Object objectTop(){
         if(isEmpty()) throw new ExceptionInInitializerError();
-        return array[top];
+        return array[top-1];
     }
     public Object pop(){
         if(isEmpty()) throw new ExceptionInInitializerError();
@@ -21,7 +21,7 @@ public class pilha{
         return array[top];
     }
     public void push(int x){
-        if(array.length-1 == top){
+        if(array.length == top){
             Object[] aux;
             aux = (Object[]) new Object[top*2];
             for(int i = 0; i < top; i++){
