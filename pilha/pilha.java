@@ -29,6 +29,7 @@ public class pilha{
             }
             array = aux;
         }
-        array[top++] = x;
+        array[top] = x;
+        top++;
     }
 }
