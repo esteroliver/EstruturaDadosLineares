@@ -17,13 +17,14 @@ public class EnergiaSolar {
         i++;
     }
     public boolean criarLinhaForca(){
-        ArrayList<Integer> linha = new ArrayList<Integer>();
-        
+        Pilha linha = new Pilha(i);
+        Pilha linha2 = new Pilha(i);
         while(!en_pilha.isEmpty()){
             int n1 = en_pilha.pop();
             int n2 = en_pilha.pop();
             if(n1 > n2){
-                linha.add(n1);
+                linha.push(n1);
+                linha2.push(n2);
             }
         }
         if(linha.size() != 0) return true;
