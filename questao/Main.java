@@ -1,23 +1,28 @@
 class Main{
     public static void main(String args[]){
-        EnergiaSolar rua = new EnergiaSolar(5);
-        rua.inserir(3);
+        //{8,6,10,4,1,5,3} 
+        EnergiaSolar rua = new EnergiaSolar(7);
+        rua.inserir(8);
         rua.inserir(6);
-        rua.inserir(2);
-        rua.inserir(7);
+        rua.inserir(10);
+        rua.inserir(4);
+        rua.inserir(1);
         rua.inserir(5);
+        rua.inserir(3);
 
-        Pilha percorrer = new Pilha(5);
-        percorrer.push(3);
+        Pilha percorrer = new Pilha(7);
+        percorrer.push(8);
         percorrer.push(6);
-        percorrer.push(2);
-        percorrer.push(7);
+        percorrer.push(10);
+        percorrer.push(4);
+        percorrer.push(1);
         percorrer.push(5);
+        percorrer.push(3);
         
         int x = 0;
         
         while(!percorrer.isEmpty()){
-            percorrer = rua.criarLinhaForca(percorrer);
+            percorrer = rua.criarLinhaForca(percorrer,7);
             x++;
         }
         System.out.println(x);
@@ -37,12 +42,16 @@ class EnergiaSolar{
         en[i] = e;
         i++;
     }
-    public Pilha criarLinhaForca(Pilha percorrer){
-        Pilha linha = new Pilha(2);
-        Pilha resto = new Pilha(2);
+    public Pilha criarLinhaForca(Pilha percorrer, int tam){
+        Pilha linha = new Pilha(tam);
+        Pilha resto = new Pilha(tam);
         while(!percorrer.isEmpty()){
             int n1 = percorrer.pop();
-            int n2 = percorrer.pop();
+            int n2 = 0;
+            if(percorrer.size() > 1){
+                n2 = percorrer.pop();
+                percorrer.push(n2);
+            }
             if(n1 > n2){
                 linha.push(n1);
                 resto.push(n2);
@@ -75,20 +84,19 @@ class Pilha{
 
     public int objectTop(){
         if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
-        return array[top-1];
-    }
-
-    public int pop(){
-        top--;
-        if(top == -1) throw new EPilhaVazia("Pilha vazia.");
         return array[top];
     }
 
+    public int pop(){
+        if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
+        top--;
+        return array[top + 1];
+    }
+
     public void push(int x){
-        if(array.length == top){
-            int aux[];
-            aux = new int[top*2];
-            for(int i = 0; i < top; i++){
+        if(array.length - 1 == top){
+            int[] aux = new int[top*2];
+            for(int i = 0; i <= top; i++){
                 aux[i] = array[i];
             }
             array = aux;
