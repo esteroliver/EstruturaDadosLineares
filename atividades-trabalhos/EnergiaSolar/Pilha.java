@@ -1,9 +1,11 @@
-class Pilha{
-    private Object array[];
+package EnergiaSolar;
+
+public class Pilha{
+    private int array[];
     private int top = -1;
 
     public Pilha(int tam){
-        array = new Object[tam];
+        array = new int[tam];
     }
 
     public int size(){
@@ -15,12 +17,12 @@ class Pilha{
         return false;
     }
 
-    public Object objectTop(){
+    public int objectTop(){
         if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
         return array[top-1];
     }
 
-    public Object pop(){
+    public int pop(){
         if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
         top--;
         return array[top];
@@ -28,8 +30,8 @@ class Pilha{
 
     public void push(int x){
         if(array.length == top){
-            Object[] aux;
-            aux = (Object[]) new Object[top*2];
+            int aux[];
+            aux = new int[top*2];
             for(int i = 0; i < top; i++){
                 aux[i] = array[i];
             }

@@ -2,7 +2,7 @@ public class pilha_ll {
     private int top = 0;
     private No last;
     private No first;
-    public class pilha_ll(int value){
+    public pilha_ll(int value){
         top = 0;
         this.first = new No();
         this.first.setElemento(null);
