@@ -8,7 +8,7 @@ public class pilha_ll {
         this.first.setElemento(null);
         this.last = new No();
         this.last.setElemento(null);
-        this.first.setProximo(last);git p
+        this.first.setProximo(last);
     }
     public boolean estaVazio(){
         if(top == 0) return true;

@@ -1,4 +1,4 @@
-package EnergiaSolar;
+package atividade;
 
 public class Pilha{
     private int array[];
@@ -23,8 +23,8 @@ public class Pilha{
     }
 
     public int pop(){
-        if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
         top--;
+        if(top == -1) throw new EPilhaVazia("Pilha vazia.");
         return array[top];
     }
 
@@ -37,8 +37,8 @@ public class Pilha{
             }
             array = aux;
         }
-        array[top] = x;
         top++;
+        array[top] = x;
     }
 }
 
