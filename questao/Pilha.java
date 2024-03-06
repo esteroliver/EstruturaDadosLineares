@@ -1,6 +1,4 @@
-package questao;
-
-public class Pilha{
+class Pilha{
     private int array[];
     private int top = -1;
 
@@ -19,20 +17,19 @@ public class Pilha{
 
     public int objectTop(){
         if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
-        return array[top-1];
-    }
-
-    public int pop(){
-        top--;
-        if(top == -1) throw new EPilhaVazia("Pilha vazia.");
         return array[top];
     }
 
+    public int pop(){
+        if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
+        top--;
+        return array[top + 1];
+    }
+
     public void push(int x){
-        if(array.length == top){
-            int aux[];
-            aux = new int[top*2];
-            for(int i = 0; i < top; i++){
+        if(array.length - 1 == top){
+            int[] aux = new int[array.length*2];
+            for(int i = 0; i <= top; i++){
                 aux[i] = array[i];
             }
             array = aux;

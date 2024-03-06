@@ -17,26 +17,26 @@ class Pilha{
 
     public Object objectTop(){
         if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
-        return array[top-1];
+        return array[top];
     }
 
     public Object pop(){
         if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
         top--;
-        return array[top];
+        return array[top + 1];
     }
 
     public void push(int x){
-        if(array.length == top){
+        if(array.length - 1 == top){
             Object[] aux;
-            aux = (Object[]) new Object[top*2];
-            for(int i = 0; i < top; i++){
+            aux = (Object[]) new Object[array.length*2];
+            for(int i = 0; i <= top; i++){
                 aux[i] = array[i];
             }
             array = aux;
         }
-        array[top] = x;
         top++;
+        array[top] = x;
     }
 }
 
