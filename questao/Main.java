@@ -1,33 +1,23 @@
+import java.util.Scanner;
 class Main{
     public static void main(String args[]){
         //{8,6,10,4,1,5,3} 
-        EnergiaSolar rua = new EnergiaSolar(7);
-        // rua.inserir(8);
-        // rua.inserir(6);
-        // rua.inserir(10);
-        // rua.inserir(4);
-        // rua.inserir(1);
-        // rua.inserir(5);
-        // rua.inserir(3);
-        rua.inserir(3);
-        rua.inserir(6);
-        rua.inserir(2);
-        rua.inserir(7);
-        rua.inserir(5);
+        //{3,6,2,7,3}
+        EnergiaSolar rua = new EnergiaSolar();
+        Scanner obj = new Scanner(System.in);
+        System.out.println("Tamanho do array:");
+        int tam = obj.nextInt();
+        int array[] = new int[tam];
+        System.out.println("Digite os valores do array:");
+        for(int i = 0; i < tam; i++){
+            array[i] = obj.nextInt();
+        }
 
         Pilha percorrer = new Pilha(1);
-        // percorrer.push(3);
-        // percorrer.push(5);
-        // percorrer.push(1);
-        // percorrer.push(4);
-        // percorrer.push(10);
-        // percorrer.push(6);
-        // percorrer.push(8);
-        percorrer.push(5);
-        percorrer.push(7);
-        percorrer.push(2);
-        percorrer.push(6);
-        percorrer.push(3);
+
+        for(int i = tam; i >= 1; i--){
+            percorrer.push(array[i-1]);
+        }
         
         int x = 0;
         
@@ -36,6 +26,6 @@ class Main{
             x++;
         }
 
-        System.out.println(x);
+        System.out.println("Quant. de linhas de força: " + x);
     }
 }
