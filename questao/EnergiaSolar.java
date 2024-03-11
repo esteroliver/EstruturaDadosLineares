@@ -7,6 +7,7 @@ class EnergiaSolar{
     }
     public Pilha criarLinhaForca(Pilha percorrer){
         Pilha linha = new Pilha(1);
+        Pilha resto = new Pilha(1);
         ArrayList<Integer> a = new ArrayList<Integer>();
         int dup1 = 0;
         int dup2 = 0;

@@ -20,9 +20,12 @@ public class EnergiaSolar {
         while(!percorrer.isEmpty()){
             int n1 = percorrer.pop();
             int n2 = percorrer.pop();
-            if(n1 > n2){
-                linha.push(n1);
-                resto.push(n2);
+            if(n1 < n2){
+                if(!resto.isEmpty() && resto.objectTop() == n2) linha.push(n1);
+                else{ 
+                    linha.push(n1);
+                    resto.push(n2);
+                }
             }
             else{
                 linha.push(n1);
