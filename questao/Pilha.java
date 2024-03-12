@@ -22,6 +22,13 @@ class Pilha{
 
     public int pop(){
         if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
+        if(top >= array.length*0.25){
+            int[] aux = new int[array.length/2 + 1];
+            for(int i = 0; i <= top; i++){
+                aux[i] = array[i];
+            }
+            array = aux;
+        }
         top--;
         return array[top + 1];
     }
@@ -36,6 +43,13 @@ class Pilha{
         }
         top++;
         array[top] = x;
+        if(top >= array.length*0.25){
+            int[] aux = new int[array.length/2 + 1];
+            for(int i = 0; i <= top; i++){
+                aux[i] = array[i];
+            }
+            array = aux;
+        }
     }
 }
 
