@@ -1,46 +1,47 @@
-public class pilha_ll {
+public class Pilha {
     private int top = 0;
     private No last;
     private No first;
-    public pilha_ll(int value){
+    public Pilha(){
         top = 0;
         this.first = new No();
         this.first.setElemento(null);
         this.last = new No();
         this.last.setElemento(null);
-        this.first.setProximo(last);
     }
     public boolean estaVazio(){
         if(top == 0) return true;
         return false;
     }
+    public int tamanho(){
+        return top;
+    }
     public void push(Object x){
+        No e = new No();
+        e.setElemento(x);
+        e.setProximo(null);
         if(top == 0){
-            No e = new No();
-            e.setElemento(x);
-            e.setProximo(null);
             first = e;
-            last = e;
         }
         else{
-            No e = new No();
-            e.setElemento(x);
-            e.setProximo(null);
             last.setProximo(e);
-            last = e;
         }
+        last = e;
         top++;
     }
     public Object objetoTopo(){
+        if(estaVazio()) throw new EPilhaVazia("Pilha vazia.");
         return last.getElemento();
     }
     public Object pop(){
-        if(top == 0) throw new ExceptionInInitializerError();
+        if(top == 0) throw new EPilhaVazia("Pilha vazia.");
         if(first == last){
-            No elemento = new No();
-            elemento = first;
+            Object elemento = new Object();
+            elemento = first.getElemento();
             first.setElemento(null);
             last.setElemento(null);
+            first.setProximo(null);
+            last.setProximo(null);
             return elemento;
         }
         No apagar = new No();
@@ -48,8 +49,8 @@ public class pilha_ll {
         while(apagar.getProximo() != last){
             apagar = apagar.getProximo();
         }
-        No retorno = new No();
-        retorno = last;
+        Object retorno = new Object();
+        retorno = last.getElemento();
         apagar.setProximo(null);
         last = apagar;
         top--;
@@ -72,4 +73,10 @@ class No{
     public void setProximo(No n){
         proximo = n;
     }
+}
+
+class EPilhaVazia extends RuntimeException {
+	public EPilhaVazia(String err) {
+		super(err);
+	}
 }
