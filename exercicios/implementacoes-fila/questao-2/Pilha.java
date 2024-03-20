@@ -1,11 +1,9 @@
-package atividade;
-
-public class Pilha{
-    private int array[];
+class Pilha{
+    private Object array[];
     private int top = -1;
 
     public Pilha(int tam){
-        array = new int[tam];
+        array = new Object[tam];
     }
 
     public int size(){
@@ -17,22 +15,22 @@ public class Pilha{
         return false;
     }
 
-    public int objectTop(){
+    public Object objectTop(){
         if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
-        return array[top-1];
-    }
-
-    public int pop(){
-        top--;
-        if(top == -1) throw new EPilhaVazia("Pilha vazia.");
         return array[top];
     }
 
-    public void push(int x){
-        if(array.length == top){
-            int aux[];
-            aux = new int[top*2];
-            for(int i = 0; i < top; i++){
+    public Object pop(){
+        if(isEmpty()) throw new EPilhaVazia("Pilha vazia.");
+        top--;
+        return array[top + 1];
+    }
+
+    public void push(Object x){
+        if(array.length - 1 == top){
+            Object[] aux;
+            aux = (Object[]) new Object[array.length*2];
+            for(int i = 0; i <= top; i++){
                 aux[i] = array[i];
             }
             array = aux;

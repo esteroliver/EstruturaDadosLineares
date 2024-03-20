@@ -1,6 +1,6 @@
 class Main{
     public static void main(String args[]){
-        Pilha f = new Pilha();
+        Fila f = new Fila();
         for(int i = 0; i < 5; i++){
             f.push(i+1);
         }
