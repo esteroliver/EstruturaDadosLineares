@@ -48,29 +48,27 @@ class Vetor{
     }
 
     public Object removeAtRank(int i){
-        if(i == 0){
+        if(i == 0){ //remover primeiro elemento
             Object elem = first.getElemento();
             first = first.getProximo();
             return elem;
         }
-        // else if(i == tam-1){
-        //     Object elem = last.getElemento();
-        //     No aux = first
-        //     for(int j = 0; j < tam-1; j++){
-        //         aux = aux.getProximo();
-        //     }
-        //     aux.setProximo(null);
-        //     last = aux;
-        //     //implementar laço
-        //     return elem;
-        // }
-        No aux = new No(null);
-        aux = first;
-        for(int j = 0; j < i; j++){
-            aux = aux.getProximo();
+        else if(i < tam){ //menor do que tamanho
+            No aux = new No(null);
+            aux = first;
+            for(int j = 0; j < i; j++){
+                aux = aux.getProximo();
+            }
+            Object elem = aux.getElemento();
+            No aux_p = new No(null);
+            aux_p = aux.getProximo().getProximo();
+            aux.setProximo(aux_p);
+            return elem;
         }
-
-
-
+        else if(i == tam-1){ //remover o último
+            Object elem = last.getElemento();
+            No aux = new No(null);
+            
+        }
     }
 }
