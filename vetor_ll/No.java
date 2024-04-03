@@ -5,6 +5,7 @@ class No{
     public No(Object elemento){
         this.elemento = elemento;
         this.proximo = null;
+        this.anterior = null;
     }
     public Object getElemento(){
         return elemento;
