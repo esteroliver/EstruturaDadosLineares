@@ -66,6 +66,23 @@ class Vetor{
             tam++;
         }
     }
+
+    public Object removeAtRank(Integer i){
+        if(i < tam && tam != 0){
+            No remove = first;
+            for(int j = 0; j < i; j++){
+                remove = remove.getProximo();
+            }
+            Object elem = remove.getElemento();
+            No aux1 = remove.getAnterior();
+            No aux2 = remove.getProximo();
+            aux1.setProximo(aux2);
+            aux2.setProximo(aux1);
+            tam--;
+            return elem;
+        }
+        else throw new EForaIndice("Índice inválido ou lista vazia.");
+    }
     // public void insertAtRank(int i, Object o){
     //     if(i == 0 && tam == 0){
     //         first.setElemento(o);
@@ -121,4 +138,10 @@ class Vetor{
 
     //     }
     // }
+}
+
+class EForaIndice extends RuntimeException{
+    public EForaIndice(String err) {
+		super(err);
+	}
 }
