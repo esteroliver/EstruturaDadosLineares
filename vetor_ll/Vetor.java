@@ -24,6 +24,48 @@ class Vetor{
         return false;
     }
 
+    public void insertAtRank(Integer i, Object o){
+        if(tam == 0 && i == 0){
+            first.setElemento(o);
+            last.setElemento(o);
+
+            first.setProximo(null);
+            last.setProximo(null);
+
+            first.setAnterior(null);
+            last.setAnterior(null);
+
+            tam++;
+        }
+        else if(i < tam){ //inserir no meio
+            No novo_no = new No(o);
+            
+            No aux = first;
+            for(int j = 0; j < i; j++){
+                aux = aux.getProximo();
+            }
+            No aux_a = aux.getAnterior();
+
+            aux_a.setProximo(novo_no);
+            novo_no.setAnterior(aux_a);
+
+            aux.setAnterior(novo_no);
+            novo_no.setProximo(aux);
+
+            if(i == 0) first = novo_no;
+            
+            tam++;
+        }
+        else if(i == tam){
+            No novo_no = new No(o);
+
+            last.setProximo(novo_no);
+            novo_no.setAnterior(last);
+            last = novo_no;
+
+            tam++;
+        }
+    }
     // public void insertAtRank(int i, Object o){
     //     if(i == 0 && tam == 0){
     //         first.setElemento(o);
