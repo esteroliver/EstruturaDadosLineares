@@ -1,6 +1,6 @@
 class Vetor{
     private No first, last;
-    private int tm;
+    private int tam;
     /**
      * TODO
      *  Implementar com lista duplamente ligada:
@@ -12,15 +12,15 @@ class Vetor{
     public Vetor(){
         first = new No(null);
         last = new No(null);
-        tm = 0;
+        tam = 0;
     }
 
     public int size(){
-        return tm;
+        return tam;
     }
 
     public boolean isEmpty(){
-        if(tm == 0) return true;
+        if(tam == 0) return true;
         return false;
     }
 
@@ -39,12 +39,14 @@ class Vetor{
         }
         else if(i < tam){ //inserir no meio
             No novo_no = new No(o);
-            
-            No aux = first;
+        
+            No aux = new No(null); 
+            aux = first;
             for(int j = 0; j < i; j++){
                 aux = aux.getProximo();
             }
-            No aux_a = aux.getAnterior();
+            No aux_a = new No(null);
+            aux_a = aux.getAnterior();
 
             aux_a.setProximo(novo_no);
             novo_no.setAnterior(aux_a);
@@ -69,15 +71,18 @@ class Vetor{
 
     public Object removeAtRank(Integer i){
         if(i < tam && tam != 0){
-            No remove = first;
+            No remove = new No(null); 
+            remove = first;
             for(int j = 0; j < i; j++){
                 remove = remove.getProximo();
             }
             Object elem = remove.getElemento();
-            No aux1 = remove.getAnterior();
-            No aux2 = remove.getProximo();
+            No aux1 = new No(null);
+            aux1 = remove.getAnterior();
+            No aux2 = new No(null);
+            aux2 = remove.getProximo();
             aux1.setProximo(aux2);
-            aux2.setProximo(aux1);
+            aux2.setAnterior(aux1);
             tam--;
             return elem;
         }
