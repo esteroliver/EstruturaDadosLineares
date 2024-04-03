@@ -53,11 +53,17 @@ class Vetor{
             first = first.getProximo();
             return elem;
         }
-        if(i == tam){
-            Object elem = last.getElemento();
-            //implementar laço
-            return elem;
-        }
+        // else if(i == tam-1){
+        //     Object elem = last.getElemento();
+        //     No aux = first
+        //     for(int j = 0; j < tam-1; j++){
+        //         aux = aux.getProximo();
+        //     }
+        //     aux.setProximo(null);
+        //     last = aux;
+        //     //implementar laço
+        //     return elem;
+        // }
         No aux = new No(null);
         aux = first;
         for(int j = 0; j < i; j++){
