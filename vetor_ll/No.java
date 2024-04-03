@@ -1,6 +1,7 @@
 class No{
     private Object elemento;
     private No proximo;
+    private No anterior;
     public No(Object elemento){
         this.elemento = elemento;
         this.proximo = null;
@@ -16,5 +17,11 @@ class No{
     }
     public void setProximo(No n){
         proximo = n;
+    }
+    public No getAnterior(){
+        return anterior;
+    }
+    public void setAnterior(No n){
+        anterior = n;
     }
 }
