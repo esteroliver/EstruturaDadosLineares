@@ -1,5 +1,5 @@
 class Vetor{
-    private Object array[];
+    private Object[] array;
     private int tam = 0;
     public Vetor(){
         array = new Object[1];
@@ -16,7 +16,7 @@ class Vetor{
      */
     public void insertAtRank(int j, Object o){
         if (array.length == tam){
-            Object aux = new Object[tam*2];
+            Object[] aux = new Object[tam*2];
             for(int i = 0; i < tam; i++){
                 aux[i] = array[i];
             }
@@ -33,12 +33,13 @@ class Vetor{
      */
     public Object removeAtRank(int i){
         if(array[i] == null){
-            throw new EForaIndice("Não há elemento nesse índice para ser removido.")
+            throw new EForaIndice("Não há elemento nesse índice para ser removido.");
         }
         Object elem = array[i];
         for(int j = i; j < tam-1; j++){
             array[j] = array[j+1];
         }
+        tam--;
         return elem;
     }
     /**
@@ -46,7 +47,7 @@ class Vetor{
      */
     public Object replaceAtRank(int i, Object o){
         if(array[i] == null){
-            throw new EForaIndice("Não há elemento nesse índice para ser substituído.")
+            throw new EForaIndice("Não há elemento nesse índice para ser substituído.");
         }
         Object elem = array[i];
         array[i] = o;
@@ -57,7 +58,7 @@ class Vetor{
      */
     public Object elemAtRank(int i){
         if(array[i] == null){
-            throw new EForaIndice("Não há elemento nesse índice.")
+            throw new EForaIndice("Não há elemento nesse índice.");
         }
         return array[i];
     }
