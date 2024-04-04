@@ -9,6 +9,7 @@ class Main{
         }
         System.out.println("----------------------");
         v.removeAtRank(2);
+        v.replaceAtRank(3, 12314);
         for(int i = 0; i < v.size(); i++){
             System.out.println(v.elemAtRank(i));
         }

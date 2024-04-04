@@ -1,5 +1,3 @@
-import java.io.EOFException;
-
 class Vetor{
     private No first, last;
     private int tam;
@@ -102,6 +100,16 @@ class Vetor{
             return aux.getElemento();
         }
         return -1;
+    }
+
+    public Object replaceAtRank(Integer i, Object o){
+        if(i >= tam) throw new EForaIndice("Fora do índice da lista.");
+        No aux = first;
+        for(int j = 0; j < i; j++)
+            aux = aux.getProximo();
+        Object elem = aux.getElemento();
+        aux.setElemento(o);
+        return elem;
     }
 }
     // public void insertAtRank(int i, Object o){
