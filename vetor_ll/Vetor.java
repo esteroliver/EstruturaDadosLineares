@@ -29,14 +29,12 @@ class Vetor{
             No novo_no = new No(o);
             first = novo_no;
             last = novo_no;
-            tam++;
         }
         else if(i == 0){
             No novo_no = new No(o);
             novo_no.setProximo(first);
             first.setAnterior(novo_no);
             first = novo_no;
-            tam++;
         }
         else if(i < tam){ //inserir no meio
             No novo_no = new No(o);
@@ -54,8 +52,6 @@ class Vetor{
             novo_no.setProximo(aux);
 
             if(i == 0) first = novo_no;
-            
-            tam++;
         }
         else if(i == tam){
             No novo_no = new No(o);
@@ -63,11 +59,9 @@ class Vetor{
             last.setProximo(novo_no);
             novo_no.setAnterior(last);
             last = novo_no;
-
-            tam++;
         }
         else throw new EForaIndice("Índice inválido.");
-    
+        tam++;
     }
 
     public Object removeAtRank(Integer i){

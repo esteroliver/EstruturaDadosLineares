@@ -7,9 +7,13 @@ class Main{
         for(int i = 0; i < v.size(); i++){
             System.out.println(v.elemAtRank(i));
         }
-        System.out.println("----------------------");
+        System.out.println("------------------");
         v.removeAtRank(2);
-        v.replaceAtRank(3, 12314);
+        for(int i = 0; i < v.size(); i++){
+            System.out.println(v.elemAtRank(i));
+        }
+        v.replaceAtRank(2,66);
+        System.out.println("------------------");
         for(int i = 0; i < v.size(); i++){
             System.out.println(v.elemAtRank(i));
         }
