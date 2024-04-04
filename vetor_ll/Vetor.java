@@ -1,3 +1,5 @@
+import java.io.EOFException;
+
 class Vetor{
     private No first, last;
     private int tam;
@@ -10,8 +12,8 @@ class Vetor{
      *  - replaceAtRank
      */
     public Vetor(){
-        first = new No(null);
-        last = new No(null);
+        first = null;
+        last = null;
         tam = 0;
     }
 
@@ -26,27 +28,26 @@ class Vetor{
 
     public void insertAtRank(Integer i, Object o){
         if(tam == 0 && i == 0){
-            first.setElemento(o);
-            last.setElemento(o);
-
-            first.setProximo(null);
-            last.setProximo(null);
-
-            first.setAnterior(null);
-            last.setAnterior(null);
-
+            No novo_no = new No(o);
+            first = novo_no;
+            last = novo_no;
+            tam++;
+        }
+        else if(i == 0){
+            No novo_no = new No(o);
+            novo_no.setProximo(first);
+            first.setAnterior(novo_no);
+            first = novo_no;
             tam++;
         }
         else if(i < tam){ //inserir no meio
             No novo_no = new No(o);
         
-            No aux = new No(null); 
-            aux = first;
+            No aux = first;
             for(int j = 0; j < i; j++){
                 aux = aux.getProximo();
             }
-            No aux_a = new No(null);
-            aux_a = aux.getAnterior();
+            No aux_a = aux.getAnterior(); 
 
             aux_a.setProximo(novo_no);
             novo_no.setAnterior(aux_a);
@@ -67,6 +68,8 @@ class Vetor{
 
             tam++;
         }
+        else throw new EForaIndice("Índice inválido.");
+    
     }
 
     public Object removeAtRank(Integer i){
@@ -88,6 +91,19 @@ class Vetor{
         }
         else throw new EForaIndice("Índice inválido ou lista vazia.");
     }
+
+    public Object elemAtRank(Integer i){
+        if(i == 0) return first.getElemento();
+        else if( i < tam){
+            No aux = first;
+            for(int j = 0; j < i; j++){
+                aux = aux.getProximo();
+            }
+            return aux.getElemento();
+        }
+        return -1;
+    }
+}
     // public void insertAtRank(int i, Object o){
     //     if(i == 0 && tam == 0){
     //         first.setElemento(o);
@@ -143,7 +159,6 @@ class Vetor{
 
     //     }
     // }
-}
 
 class EForaIndice extends RuntimeException{
     public EForaIndice(String err) {
