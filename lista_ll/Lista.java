@@ -52,5 +52,19 @@ class Lista{
         if(o == last.getElemento()) return true;
         return false;
      }
+     public Object first(){
+        if(first != null) return first.getElemento();
+        throw new EListaVazia("Lista vazia.");
+     }
+     public Object last(){
+        if(last != null) return last.getElemento();
+        throw new EListaVazia("Lista vazia.")
+     }
 
+}
+
+class EListaVazia extends RuntimeException {
+	public EListaVazia(String err) {
+		super(err);
+	}
 }
