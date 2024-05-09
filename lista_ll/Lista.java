@@ -14,8 +14,6 @@ class Lista{
 
 - replaceElement(p,o) - troca o valor do elemento do nó p, colocando o valor do segundo parâmetro.
 - swapElements(p,q) - troca os valores dos elementos de dois nós. O valor do elemento de p vai para q, e o valor do elemento de q vai para q.
-- insertBefore(p,o) - inserir antes do nó p um novo nó com valor o.
-- insertAfter(p,o) - inserir depois do nó p um novo nó com valor o.
 - remove(p) - remover o nó p da lista.
  */
 
@@ -85,6 +83,30 @@ class Lista{
         }
         last = novo_no;
         tam++;
+     }
+     public void insertBefore(Object o){
+        No novo_no = new No(o);
+        No aux1 = new No();
+        aux1 = first;
+        while(aux1.getElemento() != o){
+            aux1 = aux1.getProximo();
+        }
+        No aux2 = new No();
+        aux2 = aux1.getAnterior();
+        aux2.setProximo(novo_no);
+        aux1.setAnterior(novo_no);
+     }
+     public void insertAfter(Object o){
+        No novo_no = new No(o);
+        No aux1 = new No();
+        aux1 = first;
+        while(aux1.getElemento() != o){
+            aux1 = aux1.getProximo();
+        }
+        No aux2 = new No();
+        aux2 = aux1.getProximo();
+        aux1.setProximo(novo_no);
+        aux2.setAnterior(novo_no);
      }
 }
 
