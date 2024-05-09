@@ -1,3 +1,5 @@
+import java.io.EOFException;
+
 class Lista {
     private Object[] array;
     private Integer tam;
@@ -39,12 +41,29 @@ class Lista {
         if(isEmpty()) throw new EListaVazia("Lista vazia.");
         return array[tam-1];
     }
-    // public Object before(Object o){
+    public Object before(Object o){
+        if(isEmpty()) throw new EListaVazia("Lista vazia.");
+        if(tam == 1) throw new EListaVazia("Há apenas um elemento nessa lista.");
+        int ant = 0;
+        for(int i = 0; i < tam; i++){
+            if(array[i] == o) break;
+            ant = i;
+        }
+        if(array[ant] != null) return array[ant];
+        else throw new EListaVazia("Elemento não existe.");
+    }
 
-    // }
-    // public Object after(Object o){
-
-    // }
+    public Object after(Object o){
+        if(isEmpty()) throw new EListaVazia("Lista vazia.");
+        if(tam == 1) throw new EListaVazia("Há apenas um elemento nessa lista.");
+        int post = 0;
+        for(int i = tam-1; i >= 0; i--){
+            post = i+1;
+            if(array[i] == o) break;
+        }
+        if(array[post] != null) return array[post];
+        else throw new EListaVazia("Elemento não existe.");
+    }
     public void insertFirst(Object o){
         if(array.length == tam){
             Object aux[] = new Object[tam*2];
