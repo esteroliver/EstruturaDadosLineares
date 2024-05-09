@@ -7,15 +7,6 @@ class Lista{
         last = null;
         tam = 0;
     }
-
-/**
-
-**Métodos de atualização**
-
-- replaceElement(p,o) - troca o valor do elemento do nó p, colocando o valor do segundo parâmetro.
-- swapElements(p,q) - troca os valores dos elementos de dois nós. O valor do elemento de p vai para q, e o valor do elemento de q vai para q.
- */
-
      public int size(){
         return tam;
      }
