@@ -8,5 +8,8 @@ class Main  {
         System.out.println(l.first());
         System.out.println(l.after(l.first()));
         System.out.println(l.last());
+
+        l.insertBefore(5, 3);
+        System.out.println(l.first());
     }
 }

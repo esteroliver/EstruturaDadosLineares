@@ -14,7 +14,6 @@ class Lista{
 
 - replaceElement(p,o) - troca o valor do elemento do nó p, colocando o valor do segundo parâmetro.
 - swapElements(p,q) - troca os valores dos elementos de dois nós. O valor do elemento de p vai para q, e o valor do elemento de q vai para q.
-- remove(p) - remover o nó p da lista.
  */
 
      public int size(){
@@ -86,6 +85,8 @@ class Lista{
         last = novo_no;
         tam++;
      }
+     //insertBefore e insertAfter só adicionam se o objeto O não for o primeiro nem o último
+     //devo implementar para que adicione no início e no final também?
      public void insertBefore(Object o, Object p){
         No novo_no = new No(p);
         No aux1;
@@ -93,13 +94,15 @@ class Lista{
         while(aux1.getElemento() != o){
             aux1 = aux1.getProximo();
         }
-        No aux2;
-        aux2 = aux1.getAnterior();
-        aux2.setProximo(novo_no);
-        novo_no.setAnterior(aux2);
-        aux1.setAnterior(novo_no);
-        novo_no.setProximo(aux1);
-        tam++;
+        if(aux1 != null){
+            No aux2;
+            aux2 = aux1.getAnterior();
+            aux2.setProximo(novo_no);
+            novo_no.setAnterior(aux2);
+            aux1.setAnterior(novo_no);
+            novo_no.setProximo(aux1);
+            tam++;
+        }
      }
      public void insertAfter(Object o, Object p){
         No novo_no = new No(p);
@@ -108,11 +111,15 @@ class Lista{
         while(aux1.getElemento() != o){
             aux1 = aux1.getProximo();
         }
-        No aux2;
-        aux2 = aux1.getProximo();
-        aux1.setProximo(novo_no);
-        aux2.setAnterior(novo_no);
-        tam++;
+        if(aux1 != null){
+            No aux2;
+            aux2 = aux1.getProximo();
+            aux1.setProximo(novo_no);
+            novo_no.setAnterior(aux1);
+            aux2.setAnterior(novo_no);
+            novo_no.setProximo(aux2);
+            tam++;
+        }
      }
      public void remove(Object o){
         No aux;
