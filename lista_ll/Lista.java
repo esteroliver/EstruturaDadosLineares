@@ -152,13 +152,27 @@ class Lista{
         while(aux.getElemento() != o){
             aux = aux.getProximo();
         }
-        No aux1;
-        aux1 = aux.getAnterior();
-        No aux2;
-        aux2 = aux.getProximo();
-        aux1.setProximo(aux2);
-        aux2.setAnterior(aux1);
-        tam--;
+        if(aux != null){
+            if(aux != first && aux != last){
+                No aux1;
+                aux1 = aux.getAnterior();
+                No aux2;
+                aux2 = aux.getProximo();
+                aux1.setProximo(aux2);
+                aux2.setAnterior(aux1);
+            }
+            else if(aux == first){
+                No aux1;
+                aux1 = aux.getProximo();
+                first = aux1;
+            }
+            else if(aux == last){
+                No aux1;
+                aux1 = aux.getAnterior();
+                last = aux1;
+            }
+            tam--;
+        }
      }
 }
 
