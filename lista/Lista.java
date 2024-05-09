@@ -1,4 +1,5 @@
 import java.io.EOFException;
+import java.util.List;
 
 class Lista {
     private Object[] array;
@@ -7,11 +8,6 @@ class Lista {
         array = new Object[1];
         tam = 0;
     }
-    /**
-     * MÉTODOS PARA ATUALIZAR
-     * - swapElements(n, q)
-     * - remove(n)
-     */
     public Integer size(){
         return tam;
     }
@@ -137,6 +133,27 @@ class Lista {
             array[a] = q;
             array[b] = p;
         }
+    }
+    public void remove(Object o){
+        int j = -1;
+        for(int i = 0; i < tam; i++){
+            if(array[i] == o) j = i;
+        }
+        if(j != -1){
+            for(int i = j; i < tam; i++){
+                array[i] = array[i+1];
+            }
+            tam--;
+        }
+    }
+
+    //MÉTODO AUXILIAR PARA TESTES
+    public Object[] listar(){
+        Object[] lista = new Object[tam];
+        for(int i = 0; i < tam; i++){
+            lista[i] = array[i];
+        }
+        return lista;
     }
 }
 

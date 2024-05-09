@@ -5,28 +5,26 @@ class Main {
             l.insertLast(i+5);
             System.out.println(l.last());
         }
-        System.out.println(l.before(l.last()));
-        System.out.println(l.after(l.first()));
-
+        System.out.println("--------------------");
         Object o = 7;
-        System.out.println(l.before(o));
-        System.out.println(l.after(o));
-
-        l.insertBefore(666, o);
-        System.out.println(l.before(o));
-        l.insertAfter(777, o);
-        System.out.println(l.after(o));
-
         Object capeta = 666;
         Object anjo = 777;
+        l.insertBefore(capeta, o);
+        l.insertAfter(anjo, o);
         l.swapElements(capeta, anjo);
-        System.out.println(l.before(o));
-        System.out.println(l.after(o));
-        System.out.println(l.after(anjo));
-        for(int i = 0; i < 7; i++){
-            Object i_1 = i+5;
-            System.out.println(l.after(i_1));
+
+        Object[] listar = l.listar();
+        for(int i = 0; i < l.size(); i++){
+            System.out.println(listar[i]);
         }
+
+        System.out.println("--------------------");
+        l.remove(l.last());
+        listar = l.listar();
+        for(int i = 0; i < l.size(); i++){
+            System.out.println(listar[i]);
+        }
+        
     }
     
 }
