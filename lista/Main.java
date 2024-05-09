@@ -16,6 +16,8 @@ class Main {
         System.out.println(l.before(o));
         l.insertAfter(777, o);
         System.out.println(l.after(o));
+        Object o_n = 98;
+        l.insertBefore(o, o_n);
     }
     
 }

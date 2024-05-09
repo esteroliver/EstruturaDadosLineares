@@ -9,9 +9,7 @@ class Lista {
     }
     /**
      * MÉTODOS PARA ATUALIZAR
-     * - replaceElement(n, o)
      * - swapElements(n, q)
-     * - insertAfter(n, o)
      * - remove(n)
      */
     public Integer size(){
@@ -83,36 +81,47 @@ class Lista {
         tam++;
     }
     public void insertBefore(Object p, Object o){ //inserir objeto P antes do objeto O
-        int j = 0;
+        int j = -1;
         for(int i = 0; i < tam; i++){
             if(array[i] == o) j = i;
         }
-        if(array.length == tam){
-            Object aux[] = new Object[tam*2];
-            for(int i = 0; i < tam; i++) 
-                aux[i] = array[i];
-            array = aux;
+        if(j != -1){
+            if(array.length == tam){
+                Object aux[] = new Object[tam*2];
+                for(int i = 0; i < tam; i++) 
+                    aux[i] = array[i];
+                array = aux;
+            }
+            for(int i = tam; i > j; i--){
+                array[i] = array[i-1];
+            }
+            array[j] = p;
         }
-        for(int i = tam; i > j; i--){
-            array[i] = array[i-1];
-        }
-        array[j] = p;
     }
     public void insertAfter(Object p, Object o){
-        int j = 0;
+        int j = -1;
         for(int i = 0; i < tam; i++){
             if(array[i] == o) j = i;
         }
-        if(array.length == tam){
-            Object aux[] = new Object[tam*2];
-            for(int i = 0; i < tam; i++) 
-                aux[i] = array[i];
-            array = aux;
+        if(j != -1){
+            if(array.length == tam){
+                Object aux[] = new Object[tam*2];
+                for(int i = 0; i < tam; i++) 
+                    aux[i] = array[i];
+                array = aux;
+            }
+            for(int i = tam; i > j+1; i--){
+                array[i] = array[i-1];
+            }
+            array[j+1] = p;
         }
-        for(int i = tam; i > j+1; i--){
-            array[i] = array[i-1];
+    }
+    public void replaceElement(Object p, Object o){ //o valor do elemento do objeto O se torna o valor do elemento do objeto P
+        int j = -1;
+        for(int i = 0; i < tam; i++){
+            if(array[i] == o) j = i;
         }
-        array[j+1] = p;
+        if(j != -1) array[j] = p;
     }
 }
 
