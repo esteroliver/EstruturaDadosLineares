@@ -21,8 +21,6 @@ class Lista{
 - swapElements(p,q) - troca os valores dos elementos de dois nós. O valor do elemento de p vai para q, e o valor do elemento de q vai para q.
 - insertBefore(p,o) - inserir antes do nó p um novo nó com valor o.
 - insertAfter(p,o) - inserir depois do nó p um novo nó com valor o.
-- insertFirst(p) - inserir no início da lista o nó p.
-- insertLast(p) - inserir no final da lista o nó p.
 - remove(p) - remover o nó p da lista.
  */
 
