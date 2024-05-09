@@ -9,20 +9,9 @@ class Lista{
     }
 
 /**
- * **Métodos genéricos**
-
-- size()
-- isEmpty()
-
-**Métodos de consulta**
-
-- isFirst(p)
-- isLast(p)
 
 **Métodos de acesso**
 
-- first()
-- last()
 - prev(p) - retorna o nó antes do nó p.
 - next(p) - retorna o nó depois do nó p.
 
@@ -60,7 +49,28 @@ class Lista{
         if(last != null) return last.getElemento();
         throw new EListaVazia("Lista vazia.")
      }
-
+     public void insertFirst(Object o){
+        No novo_no = new No(o);
+        if(tam > 0){
+            first.setAnterior(novo_no);
+        }
+        else{
+            last = novo_no;
+        }
+        first = novo_no;
+        tam++;
+     }
+     public void insertLast(Object o){
+        No novo_no = new No(o);
+        if(tam > 0){
+            last.setProximo(novo_no);
+        }
+        else{
+            first = novo_no;
+        }
+        last = novo_no;
+        tam++;
+     }
 }
 
 class EListaVazia extends RuntimeException {
