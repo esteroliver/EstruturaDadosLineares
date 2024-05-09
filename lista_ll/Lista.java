@@ -10,11 +10,6 @@ class Lista{
 
 /**
 
-**Métodos de acesso**
-
-- prev(p) - retorna o nó antes do nó p.
-- next(p) - retorna o nó depois do nó p.
-
 **Métodos de atualização**
 
 - replaceElement(p,o) - troca o valor do elemento do nó p, colocando o valor do segundo parâmetro.
@@ -46,6 +41,28 @@ class Lista{
      public Object last(){
         if(last != null) return last.getElemento();
         throw new EListaVazia("Lista vazia.")
+     }
+     public Object before(Object o){
+        No aux = new No();
+        aux = first;
+        while(aux.getElemento() != o){
+            aux = aux.getProximo();
+        }
+        if(aux != null){
+            return aux.getAnterior().getElemento();
+        }
+        throw new EListaVazia("Elemento não está na lista.");
+     }
+     public Object after(Object o){
+        No aux = new No();
+        aux = first;
+        while(aux.getElemento() != o){
+            aux = aux.getProximo();
+        }
+        if(aux != null){
+            return aux.getProximo().getElemento();
+        }
+        throw new EListaVazia("Elemento não está na lista.");
      }
      public void insertFirst(Object o){
         No novo_no = new No(o);
