@@ -8,13 +8,9 @@ class Lista {
         tam = 0;
     }
     /**
-     * MÉTODOS PARA ACESSAR
-     * - before(n)
-     * - after(n)
      * MÉTODOS PARA ATUALIZAR
      * - replaceElement(n, o)
      * - swapElements(n, q)
-     * - insertBefore(n, o)
      * - insertAfter(n, o)
      * - remove(n)
      */
@@ -85,6 +81,38 @@ class Lista {
         }
         array[tam] = o;
         tam++;
+    }
+    public void insertBefore(Object p, Object o){ //inserir objeto P antes do objeto O
+        int j = 0;
+        for(int i = 0; i < tam; i++){
+            if(array[i] == o) j = i;
+        }
+        if(array.length == tam){
+            Object aux[] = new Object[tam*2];
+            for(int i = 0; i < tam; i++) 
+                aux[i] = array[i];
+            array = aux;
+        }
+        for(int i = tam; i > j; i--){
+            array[i] = array[i-1];
+        }
+        array[j] = p;
+    }
+    public void insertAfter(Object p, Object o){
+        int j = 0;
+        for(int i = 0; i < tam; i++){
+            if(array[i] == o) j = i;
+        }
+        if(array.length == tam){
+            Object aux[] = new Object[tam*2];
+            for(int i = 0; i < tam; i++) 
+                aux[i] = array[i];
+            array = aux;
+        }
+        for(int i = tam; i > j+1; i--){
+            array[i] = array[i-1];
+        }
+        array[j+1] = p;
     }
 }
 

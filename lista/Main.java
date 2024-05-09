@@ -11,6 +11,11 @@ class Main {
         Object o = 7;
         System.out.println(l.before(o));
         System.out.println(l.after(o));
+
+        l.insertBefore(666, o);
+        System.out.println(l.before(o));
+        l.insertAfter(777, o);
+        System.out.println(l.after(o));
     }
     
 }
