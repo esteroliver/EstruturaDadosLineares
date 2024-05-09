@@ -38,10 +38,10 @@ class Lista{
      }
      public Object last(){
         if(last != null) return last.getElemento();
-        throw new EListaVazia("Lista vazia.")
+        throw new EListaVazia("Lista vazia.");
      }
      public Object before(Object o){
-        No aux = new No();
+        No aux;
         aux = first;
         while(aux.getElemento() != o){
             aux = aux.getProximo();
@@ -52,7 +52,7 @@ class Lista{
         throw new EListaVazia("Elemento não está na lista.");
      }
      public Object after(Object o){
-        No aux = new No();
+        No aux;
         aux = first;
         while(aux.getElemento() != o){
             aux = aux.getProximo();
@@ -66,6 +66,7 @@ class Lista{
         No novo_no = new No(o);
         if(tam > 0){
             first.setAnterior(novo_no);
+            novo_no.setProximo(first);
         }
         else{
             last = novo_no;
@@ -77,6 +78,7 @@ class Lista{
         No novo_no = new No(o);
         if(tam > 0){
             last.setProximo(novo_no);
+            novo_no.setAnterior(last);
         }
         else{
             first = novo_no;
@@ -84,29 +86,47 @@ class Lista{
         last = novo_no;
         tam++;
      }
-     public void insertBefore(Object o){
-        No novo_no = new No(o);
-        No aux1 = new No();
+     public void insertBefore(Object o, Object p){
+        No novo_no = new No(p);
+        No aux1;
         aux1 = first;
         while(aux1.getElemento() != o){
             aux1 = aux1.getProximo();
         }
-        No aux2 = new No();
+        No aux2;
         aux2 = aux1.getAnterior();
         aux2.setProximo(novo_no);
+        novo_no.setAnterior(aux2);
         aux1.setAnterior(novo_no);
+        novo_no.setProximo(aux1);
+        tam++;
      }
-     public void insertAfter(Object o){
-        No novo_no = new No(o);
-        No aux1 = new No();
+     public void insertAfter(Object o, Object p){
+        No novo_no = new No(p);
+        No aux1;
         aux1 = first;
         while(aux1.getElemento() != o){
             aux1 = aux1.getProximo();
         }
-        No aux2 = new No();
+        No aux2;
         aux2 = aux1.getProximo();
         aux1.setProximo(novo_no);
         aux2.setAnterior(novo_no);
+        tam++;
+     }
+     public void remove(Object o){
+        No aux;
+        aux = first;
+        while(aux.getElemento() != o){
+            aux = aux.getProximo();
+        }
+        No aux1;
+        aux1 = aux.getAnterior();
+        No aux2;
+        aux2 = aux.getProximo();
+        aux1.setProximo(aux2);
+        aux2.setAnterior(aux1);
+        tam--;
      }
 }
 
