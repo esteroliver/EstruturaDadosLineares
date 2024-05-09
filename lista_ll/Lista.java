@@ -121,6 +121,31 @@ class Lista{
             tam++;
         }
      }
+     public void replaceElement(Object o, Object p){
+        No aux;
+        aux = first;
+        while(aux.getElemento() != o){
+            aux = aux.getProximo();
+        }
+        if(aux != null) aux.setElemento(p);
+     }
+     public void swapElements(Object p, Object q){
+        No aux1;
+        No aux2;
+        aux1 = first;
+        aux2 = first;
+        while(aux1.getElemento() != p){
+            aux1 = aux1.getProximo();
+        }
+        while(aux2.getElemento() != q){
+            aux2 = aux2.getProximo();
+        }
+        if(aux1 != null && aux2 != null){
+            Object p1 = aux1.getElemento();
+            aux1.setElemento(aux2.getElemento());
+            aux2.setElemento(p1);
+        }
+     }
      public void remove(Object o){
         No aux;
         aux = first;
