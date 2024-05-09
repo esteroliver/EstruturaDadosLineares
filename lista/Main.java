@@ -16,8 +16,17 @@ class Main {
         System.out.println(l.before(o));
         l.insertAfter(777, o);
         System.out.println(l.after(o));
-        Object o_n = 98;
-        l.insertBefore(o, o_n);
+
+        Object capeta = 666;
+        Object anjo = 777;
+        l.swapElements(capeta, anjo);
+        System.out.println(l.before(o));
+        System.out.println(l.after(o));
+        System.out.println(l.after(anjo));
+        for(int i = 0; i < 7; i++){
+            Object i_1 = i+5;
+            System.out.println(l.after(i_1));
+        }
     }
     
 }

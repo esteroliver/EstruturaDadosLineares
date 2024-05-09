@@ -96,6 +96,7 @@ class Lista {
                 array[i] = array[i-1];
             }
             array[j] = p;
+            tam++;
         }
     }
     public void insertAfter(Object p, Object o){
@@ -114,6 +115,7 @@ class Lista {
                 array[i] = array[i-1];
             }
             array[j+1] = p;
+            tam++;
         }
     }
     public void replaceElement(Object p, Object o){ //o valor do elemento do objeto O se torna o valor do elemento do objeto P
@@ -122,6 +124,19 @@ class Lista {
             if(array[i] == o) j = i;
         }
         if(j != -1) array[j] = p;
+    }
+    public void swapElements(Object p, Object q){
+        int a = -1;
+        int b = -1;
+        for(int i = 0; i < tam; i++){
+            if(array[i] == p) a = i;
+            if(array[i] == q) b = i;
+            if(a != -1 && b != -1) break;
+        }
+        if(a != b && a != -1 && b != -1){
+            array[a] = q;
+            array[b] = p;
+        }
     }
 }
 
