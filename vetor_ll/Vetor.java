@@ -106,61 +106,6 @@ class Vetor{
         return elem;
     }
 }
-    // public void insertAtRank(int i, Object o){
-    //     if(i == 0 && tam == 0){
-    //         first.setElemento(o);
-    //         last.setElemento(o);
-    //         last.setProximo(null);
-    //         first.setProximo(null);
-    //         tm++;
-    //     }
-    //     else if(i == 0){
-    //         No novo_no = new No(o);
-    //         novo_no.setProximo(first);
-    //         first = novo_no;
-    //     }
-    //     else if(i < tm){
-    //         No aux = new No(null);
-    //         aux = first;
-    //         for(int j = 0; j < i; j++){
-    //             aux = aux.proximo();
-    //         }
-    //         No novo_no = new No(o);
-    //         novo_no.setProximo(aux.proximo());
-    //         aux.setProximo(novo_no);
-    //     }
-    //     else if(i == tm){
-    //         No novo_no = new No(o);
-    //         novo_no.setProximo(null);
-    //         last.setProximo(novo_no);
-    //         last = novo_no;
-    //     }
-    // }
-
-    // public Object removeAtRank(int i){
-    //     if(i == 0){ //remover primeiro elemento
-    //         Object elem = first.getElemento();
-    //         first = first.getProximo();
-    //         return elem;
-    //     }
-    //     else if(i < tam){ //menor do que tamanho
-    //         No aux = new No(null);
-    //         aux = first;
-    //         for(int j = 0; j < i; j++){
-    //             aux = aux.getProximo();
-    //         }
-    //         Object elem = aux.getElemento();
-    //         No aux_p = new No(null);
-    //         aux_p = aux.getProximo().getProximo();
-    //         aux.setProximo(aux_p);
-    //         return elem;
-    //     }
-    //     else if(i == tam-1){ //remover o último
-    //         Object elem = last.getElemento();
-    //         No aux = new No(null);
-
-    //     }
-    // }
 
 class EForaIndice extends RuntimeException{
     public EForaIndice(String err) {
