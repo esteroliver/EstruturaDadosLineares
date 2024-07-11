@@ -77,6 +77,39 @@ public class ArvoreBinaria {
      }
      public void removeNode(No node_removed){
         if(isExternal(node_removed)) node_removed.setElemento(null);
-        if(())
+        
+        if(node_removed.getFilho_direita() != null && node_removed.getFilho_esquerda() == null){
+            No filho_direita = node_removed.getFilho_direita();
+            No pai = node_removed.getPai();
+            if(node_removed.getElemento() == pai.getFilho_esquerda().getElemento()){
+                if(filho_direita.getElemento() > pai.getElemento()){
+                    Integer elemento = pai.getElemento();
+                    pai.setElemento(filho_direita.getElemento());
+                    filho_direita.setElemento(elemento);
+                    filho_direita.setPai(pai.getPai());
+                    filho_direita.setFilho_esquerda(pai);
+                    pai.setPai(filho_direita);
+                }
+                else{ 
+                    pai.setFilho_direita(filho_direita);
+                    filho_direita.setPai(pai);
+                }
+            }
+            else{
+                pai.setFilho_direita(filho_direita);
+                filho_direita.setPai(pai);
+            }
+            node_removed = null;
+        }
+        else if(node_removed.getFilho_direita() == null && node_removed.getFilho_esquerda() != null){
+            No filho_esquerda = node_removed.getFilho_esquerda();
+            No pai = node_removed.getPai();
+            if(node_removed.getElemento() > pai.getElemento()){
+                pai.setFilho_direita(filho_esquerda);
+            }
+            else{
+                pai.setFilho_esquerda(filho_esquerda);
+            }
+        }
      }
 }
