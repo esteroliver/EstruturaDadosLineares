@@ -4,9 +4,9 @@ public class ArvoreBinaria {
     private No raiz;
     private Integer tam;
 
-    public ArvoreBinaria(Integer raiz){
-        tam = 1;
-        this.raiz = new No(raiz);
+    public ArvoreBinaria(){
+        tam = 0;
+        this.raiz = new No();
     }
     /**
 - integer size( ) - retorna o número de nós da árvore
@@ -45,17 +45,21 @@ public class ArvoreBinaria {
         return false;
      }
      public void insertNode(Integer obj){
-        No new_node = new No(obj);
-        No node = raiz;
-        while(node != null){
-            if(new_node.getElemento() > node.getElemento()){
-                node.setElemento(node.getFilho_direita().getElemento());
+        if(tam == 0) this.raiz = obj;
+        else{
+            No new_node = new No(obj);
+            No node = raiz;
+            while(node != null){
+                if(new_node.getElemento() > node.getElemento()){
+                    node.setElemento(node.getFilho_direita().getElemento());
+                }
+                if(new_node.getElemento() < node.getElemento()){
+                    node.setElemento(node.getFilho_esquerda().getElemento());
+                }
             }
-            if(new_node.getElemento() < node.getElemento()){
-                node.setElemento(node.getFilho_esquerda().getElemento());
-            }
+            new_node = node;
         }
-        new_node = node;
+        tam++;
      }
      public Boolean searchNode(No node_search){
         if(isExternal(node_search)) return true;
