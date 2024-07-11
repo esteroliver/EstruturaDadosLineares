@@ -82,17 +82,14 @@ public class ArvoreBinaria {
             No filho_direita = node_removed.getFilho_direita();
             No pai = node_removed.getPai();
             if(node_removed.getElemento() == pai.getFilho_esquerda().getElemento()){
+                pai.setFilho_esquerda(filho_direita);
+                filho_direita.setPai(pai);
                 if(filho_direita.getElemento() > pai.getElemento()){
-                    Integer elemento = pai.getElemento();
-                    pai.setElemento(filho_direita.getElemento());
-                    filho_direita.setElemento(elemento);
-                    filho_direita.setPai(pai.getPai());
-                    filho_direita.setFilho_esquerda(pai);
-                    pai.setPai(filho_direita);
-                }
-                else{ 
-                    pai.setFilho_direita(filho_direita);
-                    filho_direita.setPai(pai);
+                    No filho_direita_save = filho_direita;
+                    filho_direita = pai;
+                    filho_direita.setElemento(pai.getElemento());
+                    pai = filho_direita_save;
+                    pai.setElemento(filho_direita_save.getElemento());
                 }
             }
             else{
@@ -101,15 +98,9 @@ public class ArvoreBinaria {
             }
             node_removed = null;
         }
+        
         else if(node_removed.getFilho_direita() == null && node_removed.getFilho_esquerda() != null){
-            No filho_esquerda = node_removed.getFilho_esquerda();
-            No pai = node_removed.getPai();
-            if(node_removed.getElemento() > pai.getElemento()){
-                pai.setFilho_direita(filho_esquerda);
-            }
-            else{
-                pai.setFilho_esquerda(filho_esquerda);
-            }
+            
         }
      }
 }
