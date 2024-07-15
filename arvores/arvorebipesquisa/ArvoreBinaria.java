@@ -4,9 +4,9 @@ public class ArvoreBinaria {
     private No raiz;
     private Integer tam;
 
-    public ArvoreBinaria(Integer raiz){
-        tam = 1;
-        this.raiz = new No(raiz);
+    public ArvoreBinaria(){
+        tam = 0;
+        this.raiz = new No();
     }
     /**
 - integer size( ) - retorna o número de nós da árvore
@@ -45,17 +45,21 @@ public class ArvoreBinaria {
         return false;
      }
      public void insertNode(Integer obj){
-        No new_node = new No(obj);
-        No node = raiz;
-        while(node != null){
-            if(new_node.getElemento() > node.getElemento()){
-                node.setElemento(node.getFilho_direita().getElemento());
+        if(tam == 0) this.raiz = obj;
+        else{
+            No new_node = new No(obj);
+            No node = raiz;
+            while(node != null){
+                if(new_node.getElemento() > node.getElemento()){
+                    node.setElemento(node.getFilho_direita().getElemento());
+                }
+                if(new_node.getElemento() < node.getElemento()){
+                    node.setElemento(node.getFilho_esquerda().getElemento());
+                }
             }
-            if(new_node.getElemento() < node.getElemento()){
-                node.setElemento(node.getFilho_esquerda().getElemento());
-            }
+            new_node = node;
         }
-        new_node = node;
+        tam++;
      }
      public Boolean searchNode(No node_search){
         if(isExternal(node_search)) return true;
@@ -73,6 +77,30 @@ public class ArvoreBinaria {
      }
      public void removeNode(No node_removed){
         if(isExternal(node_removed)) node_removed.setElemento(null);
-        if(())
+        
+        if(node_removed.getFilho_direita() != null && node_removed.getFilho_esquerda() == null){
+            No filho_direita = node_removed.getFilho_direita();
+            No pai = node_removed.getPai();
+            if(node_removed.getElemento() == pai.getFilho_esquerda().getElemento()){
+                pai.setFilho_esquerda(filho_direita);
+                filho_direita.setPai(pai);
+                if(filho_direita.getElemento() > pai.getElemento()){
+                    No filho_direita_save = filho_direita;
+                    filho_direita = pai;
+                    filho_direita.setElemento(pai.getElemento());
+                    pai = filho_direita_save;
+                    pai.setElemento(filho_direita_save.getElemento());
+                }
+            }
+            else{
+                pai.setFilho_direita(filho_direita);
+                filho_direita.setPai(pai);
+            }
+            node_removed = null;
+        }
+        
+        else if(node_removed.getFilho_direita() == null && node_removed.getFilho_esquerda() != null){
+            
+        }
      }
 }
