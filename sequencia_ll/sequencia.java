@@ -129,9 +129,11 @@ class Sequencia{
         aux2 = first;
         while(aux1.getElemento() != p){
             aux1 = aux1.getProximo();
+            if(aux1 == null) break;
         }
         while(aux2.getElemento() != q){
             aux2 = aux2.getProximo();
+            if(aux2 == null) break;
         }
         if(aux1 != null && aux2 != null){
             Object p1 = aux1.getElemento();
@@ -277,4 +279,16 @@ class No{
     public void setAnterior(No n){
         anterior = n;
     }
+}
+
+class EListaVazia extends RuntimeException {
+	public EListaVazia(String err) {
+		super(err);
+	}
+}
+
+class EForaIndice extends RuntimeException{
+    public EForaIndice(String err) {
+		super(err);
+	}
 }
