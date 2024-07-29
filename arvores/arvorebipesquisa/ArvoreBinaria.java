@@ -68,9 +68,22 @@ public class ArvoreBinaria {
         if(isExternal(node_removed)) node_removed = null;
         //nó com um filho
         else if(node_removed.oneChild()){
-            No node_percorrer = node_removed.getPai();
+            No node_percorrer = new No();
+            node_percorrer = node_removed.getPai();
+            No node_removed_filho = new No();
+            if(node_removed.getFilho_direita() != null)
+                node_removed_filho = node_removed.getFilho_direita();
+            else node_removed_filho = node_removed.getFilho_esquerda();
+            if(node_percorrer.getFilho_direita() == node_removed){
+                node_percorrer.setFilho_direita(node_removed_filho);
+            }
+            else{
+                node_percorrer.setFilho_esquerda(node_removed_filho);
+            }
             while(!node_percorrer.trueNode()){
-                
+                removeNodeOneChild(node_percorrer, node_removed_filho);
+                if(!node_percorrer.trueNode())
+                    node_percorrer = node_percorrer.getPai();
             }
         }
         //nó com dois filhos
@@ -78,32 +91,30 @@ public class ArvoreBinaria {
 
         }
      }
-    //  public void removeNode(No node_removed){
-    //     if(isExternal(node_removed)) node_removed = null;
-        
-    //     if(node_removed.getFilho_direita() != null && node_removed.getFilho_esquerda() == null){
-    //         No filho_direita = node_removed.getFilho_direita();
-    //         No pai = node_removed.getPai();
-    //         if(node_removed == pai.getFilho_esquerda()){
-    //             pai.setFilho_esquerda(filho_direita);
-    //             filho_direita.setPai(pai);
-    //             if(filho_direita.getElemento() > pai.getElemento()){
-    //                 No filho_direita_save = filho_direita;
-    //                 filho_direita = pai;
-    //                 pai = filho_direita_save;
-    //             }
-    //         }
-    //         else{
-    //             pai.setFilho_direita(filho_direita);
-    //             filho_direita.setPai(pai);
-    //         }
-    //         node_removed = null;
-    //     }
-        
-    //     else if(node_removed.getFilho_direita() == null && node_removed.getFilho_esquerda() != null){
-            
-    //     }
-    //  }
+     private void removeNodeOneChild(No node_child, No node_parent){
+        if(node_child.getElemento() > node_parent.getElemento() && node_child == node_parent.getFilho_esquerda()){
+            if(!node_parent.oneChild()){
+                No node_aux = node_child;
+                node_child = node_parent;
+                node_parent = node_aux;
+            }
+            else{
+                node_parent.setFilho_esquerda(null);
+                node_parent.setFilho_direita(node_child);
+            }
+        }
+        else if(node_child.getElemento() < node_parent.getElemento() && node_child == node_parent.getFilho_direita()){
+            if(!node_parent.oneChild()){
+                No node_aux = node_child;
+                node_child = node_parent;
+                node_parent = node_aux;
+            }
+            else{
+                node_parent.setFilho_direita(null);
+                node_parent.setFilho_esquerda(node_child);
+            }
+        }
+     }
 }
 
     /**
