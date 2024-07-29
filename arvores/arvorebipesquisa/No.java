@@ -37,6 +37,13 @@ public class No{
     public void setFilho_direita(No filho_direita) {
         this.filho_direita = filho_direita;
     }
-    
+    public Boolean oneChild(){
+        if((filho_direita == null && filho_esquerda != null) || (filho_direita != null && filho_esquerda == null)) return true;
+        return false;
+    }
+    public Boolean trueNode(){
+        if(filho_esquerda.getElemento() < pai.getElemento() && filho_direita.getElemento() > pai.getElemento()) return true;
+        return false;
+    }
     
 }

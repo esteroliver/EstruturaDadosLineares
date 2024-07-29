@@ -3,11 +3,109 @@ package arvores.arvorebipesquisa;
 public class ArvoreBinaria {
     private No raiz;
     private Integer tam;
-
-    public ArvoreBinaria(){
-        tam = 0;
-        this.raiz = new No();
+    public ArvoreBinaria(Integer raiz){
+        tam = 1;
+        this.raiz = new No(raiz);
     }
+     public Integer size(){
+        return tam;
+     }
+     public Boolean isEmpty(){
+        if(tam == 0) return true;
+        return false;
+     }
+     public Boolean isInternal(No node){
+        if(node.getFilho_direita() != null || node.getFilho_esquerda() != null) return true;
+        return false;
+     }
+     public Boolean isExternal(No node){
+        if(node.getFilho_direita() == null && node.getFilho_esquerda() == null) return true;
+        return false;
+     }
+     public void insertNode(Integer obj){
+        No new_node = new No(obj);
+        No node = raiz;
+        while(new_node.getPai() == null){
+            if(new_node.getElemento() > node.getElemento()){
+                if(node.getFilho_direita() == null){
+                    node.setFilho_direita(new_node);
+                    new_node.setPai(node);
+                }
+                else
+                    node = node.getFilho_direita();
+            }
+            else if(new_node.getElemento() < node.getElemento()){
+                if(node.getFilho_esquerda() == null){
+                    node.setFilho_esquerda(new_node);
+                    new_node.setPai(node);
+                }
+                else
+                    node = node.getFilho_esquerda();
+            }
+        }
+        tam++;
+     }
+     public Boolean searchNode(No node_search, No node){
+        if(isExternal(node_search)) return true;
+        // if(node_search == node) return true;
+        // if(node_search.getElemento() < node.getElemento())
+        //     return searchNode(node_search, node.getFilho_esquerda());
+        // if(node_search.getElemento() > node.getElemento())
+        //     return searchNode(node_search, node.getFilho_direita());
+        while(node != node_search && node != null){
+            if(node_search.getElemento() > node.getElemento()){
+                node = node.getFilho_direita();
+            }
+            else if(node_search.getElemento() < node.getElemento()){
+                node = node.getFilho_esquerda();
+            }
+        }
+        if(node == null) return false;
+        return true;
+     }
+     public void removeNode(No node_removed){
+        //nó sem filhos
+        if(isExternal(node_removed)) node_removed = null;
+        //nó com um filho
+        else if(node_removed.oneChild()){
+            No node_percorrer = node_removed.getPai();
+            while(!node_percorrer.trueNode()){
+                
+            }
+        }
+        //nó com dois filhos
+        else if(!node_removed.oneChild() && !isExternal(node_removed)){
+
+        }
+     }
+    //  public void removeNode(No node_removed){
+    //     if(isExternal(node_removed)) node_removed = null;
+        
+    //     if(node_removed.getFilho_direita() != null && node_removed.getFilho_esquerda() == null){
+    //         No filho_direita = node_removed.getFilho_direita();
+    //         No pai = node_removed.getPai();
+    //         if(node_removed == pai.getFilho_esquerda()){
+    //             pai.setFilho_esquerda(filho_direita);
+    //             filho_direita.setPai(pai);
+    //             if(filho_direita.getElemento() > pai.getElemento()){
+    //                 No filho_direita_save = filho_direita;
+    //                 filho_direita = pai;
+    //                 pai = filho_direita_save;
+    //             }
+    //         }
+    //         else{
+    //             pai.setFilho_direita(filho_direita);
+    //             filho_direita.setPai(pai);
+    //         }
+    //         node_removed = null;
+    //     }
+        
+    //     else if(node_removed.getFilho_direita() == null && node_removed.getFilho_esquerda() != null){
+            
+    //     }
+    //  }
+}
+
     /**
 - integer size( ) - retorna o número de nós da árvore
 - integer height( ) - retorna a altura da árvore
@@ -32,75 +130,3 @@ public class ArvoreBinaria {
 - remover
 - buscar
      */
-
-     public Integer size(){
-        return tam;
-     }
-     public Boolean isEmpty(){
-        if(tam == 0) return true;
-        return false;
-     }
-     public Boolean isExternal(No node){
-        if(node.getFilho_direita() == null && node.getFilho_esquerda() == null) return true;
-        return false;
-     }
-     public void insertNode(Integer obj){
-        if(tam == 0) this.raiz = obj;
-        else{
-            No new_node = new No(obj);
-            No node = raiz;
-            while(node != null){
-                if(new_node.getElemento() > node.getElemento()){
-                    node.setElemento(node.getFilho_direita().getElemento());
-                }
-                if(new_node.getElemento() < node.getElemento()){
-                    node.setElemento(node.getFilho_esquerda().getElemento());
-                }
-            }
-            new_node = node;
-        }
-        tam++;
-     }
-     public Boolean searchNode(No node_search){
-        if(isExternal(node_search)) return true;
-        No node = raiz;
-        while(node != node_search && node != null){
-            if(node_search.getElemento() > node.getElemento()){
-                node.setElemento(node.getFilho_direita().getElemento());
-            }
-            if(node_search.getElemento() < node.getElemento()){
-                node.setElemento(node.getFilho_esquerda().getElemento());
-            }
-        }
-        if(node == null) return false;
-        return true;
-     }
-     public void removeNode(No node_removed){
-        if(isExternal(node_removed)) node_removed.setElemento(null);
-        
-        if(node_removed.getFilho_direita() != null && node_removed.getFilho_esquerda() == null){
-            No filho_direita = node_removed.getFilho_direita();
-            No pai = node_removed.getPai();
-            if(node_removed.getElemento() == pai.getFilho_esquerda().getElemento()){
-                pai.setFilho_esquerda(filho_direita);
-                filho_direita.setPai(pai);
-                if(filho_direita.getElemento() > pai.getElemento()){
-                    No filho_direita_save = filho_direita;
-                    filho_direita = pai;
-                    filho_direita.setElemento(pai.getElemento());
-                    pai = filho_direita_save;
-                    pai.setElemento(filho_direita_save.getElemento());
-                }
-            }
-            else{
-                pai.setFilho_direita(filho_direita);
-                filho_direita.setPai(pai);
-            }
-            node_removed = null;
-        }
-        
-        else if(node_removed.getFilho_direita() == null && node_removed.getFilho_esquerda() != null){
-            
-        }
-     }
-}
