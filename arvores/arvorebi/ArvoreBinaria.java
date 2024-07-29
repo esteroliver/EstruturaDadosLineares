@@ -21,7 +21,7 @@ public class ArvoreBinaria{
     }
 
     public void inserirObjeto(Integer ob){
-        if(tam + 1 == array.length) aumentarCapacidade();
+        if(tam == array.length) aumentarCapacidade();
         array[indice] = ob;
         tam++;
         indice++;
