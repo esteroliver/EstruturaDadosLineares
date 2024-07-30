@@ -1,6 +1,4 @@
-package arvores.arvorebipesquisa;
-
-public class No{
+class No{
     private Integer elemento;
     private No pai;
     private No filho_esquerda;

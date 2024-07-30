@@ -1,17 +1,26 @@
-package arvores.arvorebipesquisa;
+import java.util.ArrayList;
 
-public class ArvoreBinaria {
+class ArvoreBinaria {
     private No raiz;
     private Integer tam;
-    public ArvoreBinaria(Integer raiz){
+    private ArrayList<No> visitas;
+    public ArvoreBinaria(No raiz){
         tam = 1;
-        this.raiz = new No(raiz);
+        this.raiz = raiz;
     }
      public Integer size(){
         return tam;
      }
      public Boolean isEmpty(){
         if(tam == 0) return true;
+        return false;
+     }
+     public Boolean isLeftChild(No no){
+        if(no.getPai().getFilho_esquerda() == no) return true;
+        return false;
+     }
+     public Boolean isRightChild(No no){
+        if(no.getPai().getFilho_direita() == no) return true;
         return false;
      }
      public Boolean isInternal(No node){
@@ -22,8 +31,7 @@ public class ArvoreBinaria {
         if(node.getFilho_direita() == null && node.getFilho_esquerda() == null) return true;
         return false;
      }
-     public void insertNode(Integer obj){
-        No new_node = new No(obj);
+     public void insertNode(No new_node){
         No node = raiz;
         while(new_node.getPai() == null){
             if(new_node.getElemento() > node.getElemento()){
@@ -47,11 +55,6 @@ public class ArvoreBinaria {
      }
      public Boolean searchNode(No node_search, No node){
         if(isExternal(node_search)) return true;
-        // if(node_search == node) return true;
-        // if(node_search.getElemento() < node.getElemento())
-        //     return searchNode(node_search, node.getFilho_esquerda());
-        // if(node_search.getElemento() > node.getElemento())
-        //     return searchNode(node_search, node.getFilho_direita());
         while(node != node_search && node != null){
             if(node_search.getElemento() > node.getElemento()){
                 node = node.getFilho_direita();
@@ -65,56 +68,43 @@ public class ArvoreBinaria {
      }
      public void removeNode(No node_removed){
         //nó sem filhos
-        if(isExternal(node_removed)) node_removed = null;
+        if(isExternal(node_removed)){
+            if(isLeftChild(node_removed)) node_removed.getPai().setFilho_esquerda(null);
+            else node_removed.getPai().setFilho_direita(null); 
+            node_removed = null;
+            tam--;
+        }
         //nó com um filho
         else if(node_removed.oneChild()){
-            No node_percorrer = new No();
-            node_percorrer = node_removed.getPai();
-            No node_removed_filho = new No();
-            if(node_removed.getFilho_direita() != null)
-                node_removed_filho = node_removed.getFilho_direita();
-            else node_removed_filho = node_removed.getFilho_esquerda();
-            if(node_percorrer.getFilho_direita() == node_removed){
-                node_percorrer.setFilho_direita(node_removed_filho);
+            No node_pai = node_removed.getPai();
+            if(isLeftChild(node_removed)){
+                if(node_removed.getFilho_direita() != null) node_pai.setFilho_esquerda(node_removed.getFilho_direita());
+                else node_pai.setFilho_esquerda(node_removed.getFilho_esquerda());
             }
             else{
-                node_percorrer.setFilho_esquerda(node_removed_filho);
+                if(node_removed.getFilho_direita() != null) node_pai.setFilho_direita(node_removed.getFilho_direita());
+                else node_pai.setFilho_direita(node_removed.getFilho_esquerda());
             }
-            while(!node_percorrer.trueNode()){
-                removeNodeOneChild(node_percorrer, node_removed_filho);
-                if(!node_percorrer.trueNode())
-                    node_percorrer = node_percorrer.getPai();
-            }
+            tam--;
         }
         //nó com dois filhos
-        else if(!node_removed.oneChild() && !isExternal(node_removed)){
+        // else{
 
-        }
+        //     tam--;
+        // }
      }
-     private void removeNodeOneChild(No node_child, No node_parent){
-        if(node_child.getElemento() > node_parent.getElemento() && node_child == node_parent.getFilho_esquerda()){
-            if(!node_parent.oneChild()){
-                No node_aux = node_child;
-                node_child = node_parent;
-                node_parent = node_aux;
-            }
-            else{
-                node_parent.setFilho_esquerda(null);
-                node_parent.setFilho_direita(node_child);
-            }
-        }
-        else if(node_child.getElemento() < node_parent.getElemento() && node_child == node_parent.getFilho_direita()){
-            if(!node_parent.oneChild()){
-                No node_aux = node_child;
-                node_child = node_parent;
-                node_parent = node_aux;
-            }
-            else{
-                node_parent.setFilho_direita(null);
-                node_parent.setFilho_esquerda(node_child);
-            }
-        }
-     }
+
+    //visitas
+    private void preOrder_func(No o){
+        visitas.add(o);
+        if(o.getFilho_direita() != null) preOrder_func(o.getFilho_direita());
+        if(o.getFilho_esquerda() != null) preOrder_func(o.getFilho_esquerda());
+    }
+    public ArrayList<No> preOrder_print(){
+        visitas = new ArrayList<No>();
+        preOrder_func(raiz);
+        return visitas;
+    }
 }
 
     /**
