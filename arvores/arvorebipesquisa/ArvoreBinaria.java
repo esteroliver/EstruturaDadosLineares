@@ -18,6 +18,18 @@ class ArvoreBinaria {
         if(tam == 0) return true;
         return false;
     }
+    public No root(){
+        return raiz;
+    }
+    public No parent(No node){
+        return node.getPai();
+    }
+    public No leftChild(No node){
+        return node.getFilho_esquerda();
+    }
+    public No rightChild(No node){
+        return node.getFilho_direita();
+    }
     public Boolean isLeftChild(No no){
         if(no.getPai().getFilho_esquerda() == no) return true;
         return false;
@@ -183,18 +195,5 @@ class ArvoreBinaria {
         no_inorder = new No();
         inOrder_visite(o, false);
         return no_inorder;
-    }
-
-    public No root(){
-        return raiz;
-    }
-    public No parent(No node){
-        return node.getPai();
-    }
-    public No leftChild(No node){
-        return node.getFilho_esquerda();
-    }
-    public No rightChild(No node){
-        return node.getFilho_direita();
     }
 }
