@@ -154,18 +154,18 @@ class ArvoreBinaria {
         posOrder_func(raiz);
         return visitas;
     }
-    public ArrayList<No> inOrder_print(){
-        visitas = new ArrayList<No>();
-        inOrder_func(raiz);
-        return visitas;
-    }
     private void inOrder_func(No o){
         if(isInternal(o) && o.getFilho_esquerda() != null)
             inOrder_func(o.getFilho_esquerda());
         visitas.add(o);
         if(isInternal(o) && o.getFilho_direita() != null)
             inOrder_func(o.getFilho_direita());
-    } 
+    }
+    public ArrayList<No> inOrder_print(){
+        visitas = new ArrayList<No>();
+        inOrder_func(raiz);
+        return visitas;
+    }
     private void inOrder_visite(No o, Boolean break_rec){
         if(isInternal(o) && o.getFilho_esquerda() != null)
             inOrder_func(o.getFilho_esquerda());
