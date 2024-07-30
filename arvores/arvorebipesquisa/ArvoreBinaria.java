@@ -11,30 +11,42 @@ class ArvoreBinaria {
         tam = 1;
         this.raiz = raiz;
     }
-     public Integer size(){
+    public Integer size(){
         return tam;
-     }
-     public Boolean isEmpty(){
+    }
+    public Boolean isEmpty(){
         if(tam == 0) return true;
         return false;
-     }
-     public Boolean isLeftChild(No no){
+    }
+    public Boolean isLeftChild(No no){
         if(no.getPai().getFilho_esquerda() == no) return true;
         return false;
-     }
-     public Boolean isRightChild(No no){
+    }
+    public Boolean isRightChild(No no){
         if(no.getPai().getFilho_direita() == no) return true;
         return false;
-     }
-     public Boolean isExternal(No node){
+    }
+    public Boolean isExternal(No node){
         if(node.getFilho_direita() == null && node.getFilho_esquerda() == null) return true;
         return false;
-     }
-     public Boolean isInternal(No node){
+    }
+    public Boolean isInternal(No node){
         if(!isExternal(node)) return true;
         return false;
-     }
-     public Integer height(No o){
+    }
+    public Boolean isRoot(No node){
+        if(node == raiz) return true;
+        return false;
+    }
+    public Boolean hasLeftChild(No node){
+        if(node.getFilho_esquerda() != null) return true;
+        return false;
+    }
+    public Boolean hasRightChild(No node){
+        if(node.getFilho_direita() != null) return true;
+        return false;
+    }
+    public Integer height(No o){
         if(isExternal(o)) return 0;
         else{
             Integer max = 0;
@@ -44,12 +56,12 @@ class ArvoreBinaria {
             if(h2 > max) max = h2;
             return max;
         }
-     }
-     public Integer depth(No o){
+    }
+    public Integer depth(No o){
         if(o == raiz) return 0;
         return 1 + depth(o.getPai());
-     }
-     public void insertNode(No new_node){
+    }
+    public void insertNode(No new_node){
         No node = raiz;
         while(new_node.getPai() == null){
             if(new_node.getElemento() > node.getElemento()){
@@ -70,8 +82,8 @@ class ArvoreBinaria {
             }
         }
         tam++;
-     }
-     public Boolean searchNode(No node_search, No node){
+    }
+    public Boolean searchNode(No node_search, No node){
         if(isExternal(node_search)) return true;
         while(node != node_search && node != null){
             if(node_search.getElemento() > node.getElemento()){
@@ -83,8 +95,8 @@ class ArvoreBinaria {
         }
         if(node == null) return false;
         return true;
-     }
-     public void removeNode(No node_removed){
+    }
+    public void removeNode(No node_removed){
         //nó sem filhos
         if(isExternal(node_removed)){
             if(isLeftChild(node_removed)) node_removed.getPai().setFilho_esquerda(null);
@@ -119,7 +131,7 @@ class ArvoreBinaria {
             }
             tam--;
         }
-     }
+    }
 
     //visitas
     private void preOrder_func(No o){
@@ -172,29 +184,17 @@ class ArvoreBinaria {
         inOrder_visite(o, false);
         return no_inorder;
     }
+
+    public No root(){
+        return raiz;
+    }
+    public No parent(No node){
+        return node.getPai();
+    }
+    public No leftChild(No node){
+        return node.getFilho_esquerda();
+    }
+    public No rightChild(No node){
+        return node.getFilho_direita();
+    }
 }
-
-    /**
-- integer size( ) - retorna o número de nós da árvore
-- integer height( ) - retorna a altura da árvore
-- boolean isEmpty( ) - indica se a árvore não possui nós
-- Iterator elements( ) - percorrer os elementos da árvore
-- Iterator nos( ) - percorrer os nós da árvore
-- No root( ) - retorna o nó raiz
-- No parente(No) - retorna o nó pai do parâmetro
-- Iterator children(No) - percorre os filhos do nó parâmetro
-
-- boolean isInternal(No) - indica se o nó é interno
-- boolean isExternal(No) - indica se o nó é externo
-- boolean isRoot(No) - indica se o nó é raiz
-- integer depth(No) - retorna a profundidade de um nó
-
-- No leftChild(v) - retorna o filho esquerdo de v
-- No rightChild(v) - retorna o filho direito de v
-- boolean hasLeft(v) - retorna se v tem filho esquerdo
-- boolean hasRight(v) - retorna se v tem filho direito
-
-- inserir
-- remover
-- buscar
-     */
