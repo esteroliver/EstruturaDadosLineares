@@ -25,7 +25,8 @@ class Main{
             System.out.println(no.getElemento());
         }
         System.out.println(arvore.size());
-
+        System.out.println(arvore.height(node5));
+        System.out.println(arvore.depth(node5));
 
     }
 }

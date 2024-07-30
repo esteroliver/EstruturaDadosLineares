@@ -34,6 +34,21 @@ class ArvoreBinaria {
         if(!isExternal(node)) return true;
         return false;
      }
+     public Integer height(No o){
+        if(isExternal(o)) return 0;
+        else{
+            Integer max = 0;
+            Integer h = height(o.getFilho_direita())+1;
+            Integer h2 = height(o.getFilho_esquerda())+1;
+            if(h > max) max = h;
+            if(h2 > max) max = h2;
+            return max;
+        }
+     }
+     public Integer depth(No o){
+        if(o == raiz) return 0;
+        return 1 + depth(o.getPai());
+     }
      public void insertNode(No new_node){
         No node = raiz;
         while(new_node.getPai() == null){
