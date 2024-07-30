@@ -67,7 +67,7 @@ public class ArvoreSimples {
         return 1 + depth(o.getPai());
     }
     //métodos para percorrer elementos da árvore
-    public void preOrder_func(No o){
+    private void preOrder_func(No o){
         visitas.add(o);
         for (No filho : o.children()) {
             preOrder_func(filho);

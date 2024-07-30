@@ -23,12 +23,12 @@ class ArvoreBinaria {
         if(no.getPai().getFilho_direita() == no) return true;
         return false;
      }
-     public Boolean isInternal(No node){
-        if(node.getFilho_direita() != null || node.getFilho_esquerda() != null) return true;
-        return false;
-     }
      public Boolean isExternal(No node){
         if(node.getFilho_direita() == null && node.getFilho_esquerda() == null) return true;
+        return false;
+     }
+     public Boolean isInternal(No node){
+        if(!isExternal(node)) return true;
         return false;
      }
      public void insertNode(No new_node){
@@ -88,10 +88,10 @@ class ArvoreBinaria {
             tam--;
         }
         //nó com dois filhos
-        // else{
+        else{
 
-        //     tam--;
-        // }
+            tam--;
+        }
      }
 
     //visitas
@@ -103,6 +103,18 @@ class ArvoreBinaria {
     public ArrayList<No> preOrder_print(){
         visitas = new ArrayList<No>();
         preOrder_func(raiz);
+        return visitas;
+    }
+    private void inOrder_func(No o){
+        if(isInternal(o) && o.getFilho_esquerda() != null)
+            inOrder_func(o.getFilho_esquerda());
+        visitas.add(o);
+        if(isInternal(o) && o.getFilho_direita() != null)
+            inOrder_func(o.getFilho_direita());
+    }
+    public ArrayList<No> inOrder_print(){
+        visitas = new ArrayList<No>();
+        inOrder_func(raiz);
         return visitas;
     }
 }
