@@ -18,10 +18,13 @@ class Main{
         arvore.insertNode(node5);
         arvore.insertNode(node6);
 
-        ArrayList<No> nodes = arvore.preOrder_print();
+        arvore.removeNode(node4);
+
+        ArrayList<No> nodes = arvore.posOrder_print();
         for(No no : nodes){
             System.out.println(no.getElemento());
         }
+        System.out.println(arvore.size());
 
 
     }

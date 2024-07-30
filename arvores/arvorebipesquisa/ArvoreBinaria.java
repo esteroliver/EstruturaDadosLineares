@@ -3,7 +3,10 @@ import java.util.ArrayList;
 class ArvoreBinaria {
     private No raiz;
     private Integer tam;
+
     private ArrayList<No> visitas;
+    private No no_inorder;
+
     public ArvoreBinaria(No raiz){
         tam = 1;
         this.raiz = raiz;
@@ -89,7 +92,16 @@ class ArvoreBinaria {
         }
         //nó com dois filhos
         else{
-
+            No node = node_removed.getFilho_direita();
+            No node_pai = node_removed.getPai();
+            No node_sub = inOrder_return(node);
+            node_sub.setFilho_esquerda(node_removed.getFilho_esquerda());
+            if(isLeftChild(node_removed)){
+                node_pai.setFilho_esquerda(node_sub);
+            }
+            else{
+                node_pai.setFilho_direita(node_sub);
+            }
             tam--;
         }
      }
@@ -97,12 +109,27 @@ class ArvoreBinaria {
     //visitas
     private void preOrder_func(No o){
         visitas.add(o);
-        if(o.getFilho_direita() != null) preOrder_func(o.getFilho_direita());
         if(o.getFilho_esquerda() != null) preOrder_func(o.getFilho_esquerda());
+        if(o.getFilho_direita() != null) preOrder_func(o.getFilho_direita());
     }
     public ArrayList<No> preOrder_print(){
         visitas = new ArrayList<No>();
         preOrder_func(raiz);
+        return visitas;
+    } 
+    public void posOrder_func(No o){
+        if(o.getFilho_esquerda() != null) posOrder_func(o.getFilho_esquerda());
+        if(o.getFilho_direita() != null) posOrder_func(o.getFilho_direita());
+        visitas.add(o);
+    }
+    public ArrayList<No> posOrder_print(){
+        visitas = new ArrayList<No>();
+        posOrder_func(raiz);
+        return visitas;
+    }
+    public ArrayList<No> inOrder_print(){
+        visitas = new ArrayList<No>();
+        inOrder_func(raiz);
         return visitas;
     }
     private void inOrder_func(No o){
@@ -111,11 +138,24 @@ class ArvoreBinaria {
         visitas.add(o);
         if(isInternal(o) && o.getFilho_direita() != null)
             inOrder_func(o.getFilho_direita());
+    } 
+    private void inOrder_visite(No o, Boolean break_rec){
+        if(isInternal(o) && o.getFilho_esquerda() != null)
+            inOrder_func(o.getFilho_esquerda());
+        if(break_rec){
+            return;
+        }
+        if(o.oneChild() || isExternal(o)){
+            no_inorder = o;
+            break_rec = true;
+        }
+        if(isInternal(o) && o.getFilho_direita() != null)
+            inOrder_func(o.getFilho_direita());
     }
-    public ArrayList<No> inOrder_print(){
-        visitas = new ArrayList<No>();
-        inOrder_func(raiz);
-        return visitas;
+    private No inOrder_return(No o){
+        no_inorder = new No();
+        inOrder_visite(o, false);
+        return no_inorder;
     }
 }
 
