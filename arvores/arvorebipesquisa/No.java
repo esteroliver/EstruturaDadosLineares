@@ -1,5 +1,3 @@
-package arvores.arvorebipesquisa;
-
 public class No{
     private Integer elemento;
     private No pai;
