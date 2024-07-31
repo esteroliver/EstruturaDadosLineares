@@ -196,4 +196,29 @@ class ArvoreBinaria {
         inOrder_visite(o, false);
         return no_inorder;
     }
+    //DESENHAR ÁRVORE
+        //matriz: altura max por tamanho
+    public void desenharArvore(){
+        Integer altura = height(raiz);
+        Integer[][] matriz = new Integer[altura+1][size()];
+        ArrayList<No> nodes = inOrder_print();
+        Integer k = 0;
+        for(No node : nodes){
+            matriz[depth(node)][k] = node.getElemento();
+            k++;
+        }
+        for(int i = 0; i <= altura; i++){
+            for(int j = 0; j < size(); j++){
+                Integer print;
+                if(matriz[i][j] == null)
+                    System.out.print(" ");
+                
+                else
+                    System.out.print(matriz[i][j]);
+                
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
 }
