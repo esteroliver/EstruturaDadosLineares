@@ -1,4 +1,5 @@
 class TimSort {
+    public TimSort(){}
     private void insert(Integer array[], Integer esq, Integer dir){
         for(Integer i = esq + 1; i <= dir; i++){
             Integer aux = array[i];
@@ -45,16 +46,16 @@ class TimSort {
     }
 
     public void timSort(Integer array[], Integer size){
-        Integer RUN = array.length / 4;
+        Integer RUN = array.length / 5;
         for(Integer i = 0; i < size; i+= RUN){
             insert(array, i, ( i + RUN - 1));
         }
         for(Integer s = RUN; s < size; s = 2 * s){
             for(Integer esq = 0; esq < size; esq += 2 * s){
                 Integer mid = (esq + s - 1);
-                Integer j1 = (esq + s - 1) - esq + 1;
+                Integer j1 = mid;
                 Integer dir = (esq + 2 * s - 1);
-                Integer j2 = dir - (esq + s - 1);
+                Integer j2 = mid + 1;
 
                 if(mid < dir){
                     merge(array, esq, j1, dir, j2);
