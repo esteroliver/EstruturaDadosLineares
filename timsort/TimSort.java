@@ -40,13 +40,13 @@ class TimSort {
             k++;
             j++;
         }
-        for(i = i1, j = 0; i < j2; i++, j++){
+        for(i = i1, j = 0; i <= j2; i++, j++){
             array[i] = temp[j];
         }
     }
 
     public void timSort(Integer array[], Integer size){
-        Integer RUN = array.length / 5;
+        Integer RUN = 32;
         for(Integer i = 0; i < size; i+= RUN){
             insert(array, i, ( i + RUN - 1));
         }
@@ -54,7 +54,7 @@ class TimSort {
             for(Integer esq = 0; esq < size; esq += 2 * s){
                 Integer mid = (esq + s - 1);
                 Integer j1 = mid;
-                Integer dir = (esq + 2 * s - 1);
+                Integer dir = Math.min(esq + 2 * s - 1, size - 1);
                 Integer j2 = mid + 1;
 
                 if(mid < dir){
