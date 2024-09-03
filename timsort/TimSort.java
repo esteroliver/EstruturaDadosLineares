@@ -57,7 +57,7 @@ class TimSort {
                 Integer dir = mid + 1;
                 Integer j2 = Math.min(esq + 2 * s - 1, size - 1);
 
-                if(mid < dir){
+                if(mid < j2){
                     merge(array, esq, j1, dir, j2);
                 }
             }
