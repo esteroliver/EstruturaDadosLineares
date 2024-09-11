@@ -5,6 +5,7 @@ class Main {
         heap.insert(5, "Theo");
         heap.insert(3, "Matias");
         heap.insert(1, "Duda");
+        heap.removeMin();
         heap.printHeap();
     }
 }

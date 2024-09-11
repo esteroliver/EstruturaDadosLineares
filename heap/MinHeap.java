@@ -1,7 +1,6 @@
 class MinHeap {
     private Integer tamanho;
     private Item array[];
-    private Item raiz;
 
     public MinHeap(){
         tamanho = 1;
@@ -28,7 +27,6 @@ class MinHeap {
         ind_filho = tamanho;
         
         while(elemento.getChave() < pai.getChave()){
-            System.out.println("Elemento: "+ elemento.getChave() + " "+"Pai: " + pai.getChave());
             array[ind_filho] = pai;
             array[ind_pai] = elemento;
 
@@ -52,6 +50,28 @@ class MinHeap {
         if(tamanho >= 2)
             unHeap();
         tamanho++;
-        
+    }
+
+    public Item min(){
+        if(tamanho > 1) return array[1];
+        else{
+            Item item = new Item(null, "Sem itens.");
+            return item;
+        }
+    }
+
+    public Item removeMin(){
+        if(tamanho > 1){
+            Item min = array[1];
+            for(int i = 1; i < tamanho + 1; i++){
+                array[i] = array[i+1];
+            }
+            tamanho--;
+            return min;
+        }
+        else{
+            Item item = new Item(null, "Sem itens.");
+            return item;
+        }
     }
 }
