@@ -62,8 +62,10 @@ class ArvoreBinaria {
         if(isExternal(o)) return 0;
         else{
             Integer max = 0;
-            Integer h = height(o.getFilho_direita())+1;
-            Integer h2 = height(o.getFilho_esquerda())+1;
+            Integer h = 0;
+            if(o.getFilho_direita() != null) h = height(o.getFilho_direita())+1;
+            Integer h2 = 0;
+            if(o.getFilho_esquerda() != null) h2 = height(o.getFilho_esquerda())+1;
             if(h > max) max = h;
             if(h2 > max) max = h2;
             return max;
@@ -131,16 +133,25 @@ class ArvoreBinaria {
         }
         //nó com dois filhos
         else{
-            No node = node_removed.getFilho_direita();
             No node_pai = node_removed.getPai();
-            No node_sub = inOrder_return(node);
-            node_sub.setFilho_esquerda(node_removed.getFilho_esquerda());
+            No node_sub;
+            if(!hasRightChild(node_removed.getFilho_esquerda())){
+                node_sub = node_removed.getFilho_esquerda();
+            }
+            else{
+                node_sub = inOrder_return(node_removed.getFilho_esquerda());
+                node_sub.setFilho_esquerda(node_removed.getFilho_esquerda());
+                node_removed.getFilho_esquerda().setPai(node_sub);
+            }
+            node_sub.setFilho_direita(node_removed.getFilho_direita());
+            node_removed.getFilho_direita().setPai(node_sub);
             if(isLeftChild(node_removed)){
                 node_pai.setFilho_esquerda(node_sub);
             }
             else{
                 node_pai.setFilho_direita(node_sub);
             }
+            node_sub.setPai(node_pai);
             tam--;
         }
     }
@@ -179,17 +190,18 @@ class ArvoreBinaria {
         return visitas;
     }
     private void inOrder_visite(No o, Boolean break_rec){
-        if(isInternal(o) && o.getFilho_esquerda() != null)
-            inOrder_func(o.getFilho_esquerda());
+        if(isInternal(o) && o.getFilho_esquerda() != null){
+            inOrder_visite(o.getFilho_esquerda(), break_rec);
+        }
+        if(isExternal(o) && isRightChild(o)){
+            break_rec = true;
+            no_inorder = o;
+        }
         if(break_rec){
             return;
         }
-        if(o.oneChild() || isExternal(o)){
-            no_inorder = o;
-            break_rec = true;
-        }
         if(isInternal(o) && o.getFilho_direita() != null)
-            inOrder_func(o.getFilho_direita());
+            inOrder_visite(o.getFilho_direita(), break_rec);
     }
     private No inOrder_return(No o){
         no_inorder = new No();
@@ -204,8 +216,10 @@ class ArvoreBinaria {
         ArrayList<No> nodes = inOrder_print();
         Integer k = 0;
         for(No node : nodes){
+           
             matriz[depth(node)][k] = node.getElemento();
             k++;
+            
         }
         for(int i = 0; i <= altura; i++){
             for(int j = 0; j < size(); j++){
