@@ -19,7 +19,10 @@ class Main{
         arvore.insertNode(node7);
         arvore.insertNode(node8);
         arvore.insertNode(node9);
+       
         arvore.removeNode(node3);
         arvore.desenharArvore();
+        //System.out.println(arvore.rightChild(node7).getElemento());
+        
     }
 }
