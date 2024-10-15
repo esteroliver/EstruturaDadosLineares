@@ -19,10 +19,20 @@ class Main{
         arvore.insertNode(node7);
         arvore.insertNode(node8);
         arvore.insertNode(node9);
-       
+        arvore.desenharArvore();
+        System.out.println("---------------------");
         arvore.removeNode(node3);
         arvore.desenharArvore();
-        //System.out.println(arvore.rightChild(node7).getElemento());
-        
+        System.out.println("---------------------");
+        arvore.removeNode(node9);
+        arvore.removeNode(node8);
+        arvore.desenharArvore();
+        System.out.println("---------------------");
+        arvore.removeNode(node4);
+        arvore.desenharArvore();
+        System.out.println("---------------------");
+        arvore.removeNode(node2);
+        arvore.desenharArvore();
+        System.out.println(node5.getPai().getElemento());
     }
 }

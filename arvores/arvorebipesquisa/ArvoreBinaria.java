@@ -122,12 +122,24 @@ class ArvoreBinaria {
         else if(node_removed.oneChild()){
             No node_pai = node_removed.getPai();
             if(isLeftChild(node_removed)){
-                if(node_removed.getFilho_direita() != null) node_pai.setFilho_esquerda(node_removed.getFilho_direita());
-                else node_pai.setFilho_esquerda(node_removed.getFilho_esquerda());
+                if(node_removed.getFilho_direita() != null){
+                    node_pai.setFilho_esquerda(node_removed.getFilho_direita());
+                    node_removed.getFilho_direita().setPai(node_pai);
+                }
+                else{
+                    node_pai.setFilho_esquerda(node_removed.getFilho_esquerda());
+                    node_removed.getFilho_esquerda().setPai(node_pai);
+                }
             }
             else{
-                if(node_removed.getFilho_direita() != null) node_pai.setFilho_direita(node_removed.getFilho_direita());
-                else node_pai.setFilho_direita(node_removed.getFilho_esquerda());
+                if(node_removed.getFilho_direita() != null){
+                    node_pai.setFilho_direita(node_removed.getFilho_direita());
+                    node_removed.getFilho_direita().setPai(node_pai);
+                }
+                else{
+                    node_pai.setFilho_direita(node_removed.getFilho_esquerda());
+                    node_removed.getFilho_esquerda().setPai(node_pai);
+                }
             }
             tam--;
         }
